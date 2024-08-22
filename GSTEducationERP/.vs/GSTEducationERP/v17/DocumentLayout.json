@@ -1,0 +1,197 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|c:\\users\\shreyas\\onedrive\\desktop\\rahitech\\erp project\\gsteducationerp\\gsteducationerp\\views\\accountant\\addvoucherasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:views\\accountant\\addvoucherasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\views\\accountant\\accountantdashboardasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:views\\accountant\\accountantdashboardasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A092F9-0B5F-4F73-8392-3BC5D95A0A3E}|..\\GSTEducationERPLibrary\\GSTEducationERPLibrary.csproj|c:\\users\\shreyas\\onedrive\\desktop\\rahitech\\erp project\\gsteducationerp\\gsteducationerplibrary\\accountant\\balaccountant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\controllers\\accountantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:controllers\\accountantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A092F9-0B5F-4F73-8392-3BC5D95A0A3E}|..\\GSTEducationERPLibrary\\GSTEducationERPLibrary.csproj|c:\\users\\shreyas\\onedrive\\desktop\\rahitech\\erp project\\gsteducationerp\\gsteducationerplibrary\\accountant\\accountant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\views\\accountant\\listallvouchersasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:views\\accountant\\listallvouchersasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\views\\accountant\\listpendingvoucherasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:views\\accountant\\listpendingvoucherasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\views\\accountant\\collectvoucherasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:views\\accountant\\collectvoucherasyncsgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\views\\accountant\\detailsvouchersgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0B6A9BA1-57C6-447B-B980-D304906D4916}|GSTEducationERP.csproj|solutionrelative:views\\accountant\\detailsvouchersgs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\AdminLTE-3.2.0\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Accountant.cs",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERPLibrary\\Accountant\\Accountant.cs",
+              "RelativeDocumentMoniker": "..\\GSTEducationERPLibrary\\Accountant\\Accountant.cs",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERPLibrary\\Accountant\\Accountant.cs",
+              "RelativeToolTip": "..\\GSTEducationERPLibrary\\Accountant\\Accountant.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAnwFIAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T05:05:29.978Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BALAccountant.cs",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERPLibrary\\Accountant\\BALAccountant.cs",
+              "RelativeDocumentMoniker": "..\\GSTEducationERPLibrary\\Accountant\\BALAccountant.cs",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERPLibrary\\Accountant\\BALAccountant.cs",
+              "RelativeToolTip": "..\\GSTEducationERPLibrary\\Accountant\\BALAccountant.cs",
+              "ViewState": "AQIAAIMAAAAAAAAAAAAwwJoAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T04:48:04.867Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountantController.cs",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Controllers\\AccountantController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountantController.cs",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Controllers\\AccountantController.cs",
+              "RelativeToolTip": "Controllers\\AccountantController.cs",
+              "ViewState": "AQIAAFgBAAAAAAAAAAAmwKoBAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T04:39:42.99Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DetailsVoucherSGS.cshtml",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\DetailsVoucherSGS.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accountant\\DetailsVoucherSGS.cshtml",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\DetailsVoucherSGS.cshtml",
+              "RelativeToolTip": "Views\\Accountant\\DetailsVoucherSGS.cshtml",
+              "ViewState": "AQIAAJsAAAAAAAAAAAAIwK8AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-13T10:53:01.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CollectVoucherAsyncSGS.cshtml",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\CollectVoucherAsyncSGS.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accountant\\CollectVoucherAsyncSGS.cshtml",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\CollectVoucherAsyncSGS.cshtml",
+              "RelativeToolTip": "Views\\Accountant\\CollectVoucherAsyncSGS.cshtml",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAAAKoAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-13T09:27:43.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ListPendingVoucherAsyncSGS.cshtml",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\ListPendingVoucherAsyncSGS.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accountant\\ListPendingVoucherAsyncSGS.cshtml",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\ListPendingVoucherAsyncSGS.cshtml",
+              "RelativeToolTip": "Views\\Accountant\\ListPendingVoucherAsyncSGS.cshtml",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAAEUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-13T09:20:04.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddVoucherAsyncSGS.cshtml",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\AddVoucherAsyncSGS.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accountant\\AddVoucherAsyncSGS.cshtml",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\AddVoucherAsyncSGS.cshtml",
+              "RelativeToolTip": "Views\\Accountant\\AddVoucherAsyncSGS.cshtml",
+              "ViewState": "AQIAADYBAAAAAAAAAAAAAEoBAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-12T09:20:34.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ListAllVouchersAsyncSGS.cshtml",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\ListAllVouchersAsyncSGS.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accountant\\ListAllVouchersAsyncSGS.cshtml",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\ListAllVouchersAsyncSGS.cshtml",
+              "RelativeToolTip": "Views\\Accountant\\ListAllVouchersAsyncSGS.cshtml",
+              "ViewState": "AQIAAEABAAAAAAAAAAAAAFcBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-12T07:41:52.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\AdminLTE-3.2.0\\index.html",
+              "RelativeDocumentMoniker": "..\\..\\..\\AdminLTE-3.2.0\\index.html",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\AdminLTE-3.2.0\\index.html",
+              "RelativeToolTip": "..\\..\\..\\AdminLTE-3.2.0\\index.html",
+              "ViewState": "AQIAAHMFAAAAAAAAAAAAAH4FAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-08-09T11:51:43.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountantDashboardAsyncSGS.cshtml",
+              "DocumentMoniker": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\AccountantDashboardAsyncSGS.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accountant\\AccountantDashboardAsyncSGS.cshtml",
+              "ToolTip": "C:\\Users\\Shreyas\\OneDrive\\Desktop\\Rahitech\\ERP Project\\GSTEducationERP\\GSTEducationERP\\Views\\Accountant\\AccountantDashboardAsyncSGS.cshtml",
+              "RelativeToolTip": "Views\\Accountant\\AccountantDashboardAsyncSGS.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAKUAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-08T04:54:18.863Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

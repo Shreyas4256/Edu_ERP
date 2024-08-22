@@ -1,0 +1,251 @@
+﻿@model GSTEducationERPLibrary.Accountant.Accountant
+
+@{
+    ViewBag.Title = "Edit Voucher";
+    //Layout = "~/Views/Shared/_Layout.cshtml"; // Ensure this points to your layout file
+}
+
+<style>
+    .form-horizontal .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .is-invalid {
+        border-color: #dc3545;
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+
+    .card {
+        border: 1px solid #000;
+    }
+
+    .btn-primary {
+        background-color: #000;
+        border-color: #000;
+    }
+
+    .form-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-left, .form-right {
+        width: 48%;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <form id="voucherForm" class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-container">
+                        <div class="form-left">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.VoucherCode, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.VoucherCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.VoucherCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @if (Model.VendorName != null)
+                            {
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.VendorName, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.VendorName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.VendorName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            } else
+                            {
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.AmountPaidTo, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.AmountPaidTo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AmountPaidTo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PaymentMode, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.PaymentMode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.BankId, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.BankId, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BankId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ReceiverBankAccountNumber, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ReceiverBankAccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankAccountNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-right">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ReceiverBankAccountHolderName, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ReceiverBankAccountHolderName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankAccountHolderName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ReceiverBankIFSCCode, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ReceiverBankIFSCCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankIFSCCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ReceiverBankName, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ReceiverBankName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Currency, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.TransactionId, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.TransactionId, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TransactionId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.VoucherType, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.VoucherType, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.VoucherType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.VoucherDate, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.VoucherDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.VoucherDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ChequeDate, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ChequeDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ChequeDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.StaffCode, htmlAttributes: new { @class = "col-md-4 col-form-label" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.StaffCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.StaffCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-10 offset-md-2">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#voucherForm').validate({
+                rules: {
+                    VoucherCode: {
+                        required: true
+                    },
+                    Amount: {
+                        required: true,
+                        number: true
+                    },
+                    // Add more rules as per your model
+                },
+                messages: {
+                    VoucherCode: {
+                        required: "Voucher Code is required"
+                    },
+                    Amount: {
+                        required: "Amount is required",
+                        number: "Please enter a valid amount"
+                    },
+                    // Add more custom messages as per your model
+                },
+                errorClass: 'text-danger',
+                errorElement: 'span',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest('.form-control').addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest('.form-control').removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
+}

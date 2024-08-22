@@ -1,0 +1,448 @@
+﻿@model GSTEducationERPLibrary.Accountant.Accountant
+
+@{
+    ViewBag.Title = "AddBankVoucherAsyncSGS";
+}
+
+@using (Html.BeginForm("AddVoucherAsyncSGS", "Accountant", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <html>
+    <head>
+        <!-- BS Stepper -->
+        <link href="~/Content/plugins/bs-stepper/css/bs-stepper.min.css" rel="stylesheet" />
+        <link href="~/Content/plugins/bs-stepper/css/bs-stepper.css" rel="stylesheet" />
+        <script src="~/Content/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+        <script src="~/Content/plugins/bs-stepper/js/bs-stepper.js"></script>
+    </head>
+    <body>
+        <div class="bs-stepper">
+            <div class="bs-stepper-header" role="tablist">
+                <!-- your steps here -->
+                <div class="step" data-target="#Voucher-part">
+                    <button type="button" class="step-trigger" role="tab" aria-controls="Voucher-part" id="Voucher-part-trigger">
+                        <span class="bs-stepper-circle">1</span>
+                        <span class="bs-stepper-label">Voucher information</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#Receiver-part">
+                    <button type="button" class="step-trigger" role="tab" aria-controls="Receiver-part" id="Receiver-part-trigger">
+                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-label">Receiver's information</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#VoucherPayment-part">
+                    <button type="button" class="step-trigger" role="tab" aria-controls="VoucherPayment-part" id="VoucherPayment-part-trigger">
+                        <span class="bs-stepper-circle">3</span>
+                        <span class="bs-stepper-label">Payment information</span>
+                    </button>
+                </div>
+            </div>
+            <div class="bs-stepper-content">
+                <!-- Step 1 -->
+                <div id="Voucher-part" class="content" role="tabpanel" aria-labelledby="Voucher-part-trigger">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 card-body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div id="VoucherCode" class="form-group">
+                                @Html.LabelFor(model => model.VoucherCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.VoucherCode, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.VoucherCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="VoucherType" class="control-label">Voucher Type</label>
+                                <div class="col-md-10" style="width:370px">
+                                    @{
+                                        var hardcodedList = ViewBag.VoucherTypeList;
+                                    }
+                                    @Html.DropDownListFor(model => model.VoucherType, new SelectList(hardcodedList, "Value", "Text", ViewBag.SelectedVoucherType), "--Select Voucher Type--", new { @class = "form-control", required = "required", id = "VoucherType" })
+                                    @Html.ValidationMessageFor(model => model.VoucherType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="AmountField" class="form-group">
+                                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", id = "Amount", type = "number", min = "0", step = "0.01", oninput = "validateAmount();" } })
+                                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div id="Description" class="form-group">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", id = "Desc" })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <button class="btn btn-outline-primary" id="NextTo2" style="margin-right:30px; width:25%;" disabled>Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="Receiver-part" class="content" role="tabpanel" aria-labelledby="Receiver-part-trigger">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 card-body">
+                            <div class="form-group">
+                                <label for="AmountPaidTo" class="control-label">Voucher Receiver</label>
+                                <div class="col-md-10" style="width:370px">
+                                    @{
+                                        var AmmountPaidToList = new List<SelectListItem>
+                                                                                                                                                                                                                {
+                                            new SelectListItem { Value = "Vendor", Text = "Vendor" },
+                                            new SelectListItem { Value = "Staff", Text = "Staff" }
+                                        };
+                                    }
+                                    @Html.DropDownListFor(model => model.AmountReceiver, new SelectList(AmmountPaidToList, "Value", "Text"), "--Select Voucher Receiver--", new { @class = "form-control", required = "required", id = "AmountPaidTo" })
+                                    @Html.ValidationMessageFor(model => model.AmountReceiver, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div id="VendorNameField" class="form-group" style="display: none;">
+                                <label for="VendorName" class="control-label">Vendor Name</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.VendorName, new { htmlAttributes = new { @class = "form-control", id = "VendorName" } })
+                                    @Html.ValidationMessageFor(model => model.VendorName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div id="StaffDropdownField" class="form-group" style="display: none;">
+                                <label for="StaffMember" class="control-label">Select Staff</label>
+                                <div class="col-md-10">
+                                    @{
+                                        var staffList = ViewBag.combinedReportingList;
+                                    }
+                                    @Html.DropDownListFor(model => model.AmountPaidTo, new SelectList(staffList, "Value", "Text"), "--Select Staff--", new { @class = "form-control", id = "StaffName" })
+                                    @Html.ValidationMessageFor(model => model.AmountPaidTo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <button class="btn btn-outline-primary" id="PrevTo1" style="margin-right:30px; width:25%;">Previous</button>
+                                <button class="btn btn-outline-primary" id="NextTo3" style="margin-right:30px; width:25%;" disabled>Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <!---  Here our payment Stepper view will be started -->
+                <div id="VoucherPayment-part" class="content" role="tabpanel" aria-labelledby="VoucherPayment-part-trigger">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 card-body">
+
+                            <div class="form-group">
+                                <label for="AmountPaidTo" class="control-label">Payment Mode</label>
+                                <div class="col-md-10" style="width:370px">
+                                    @{
+                                        var TransactionTypeToList = new List<SelectListItem>
+                                                                                                                                                                {
+                                             new SelectListItem { Value = "Cash", Text = "Cash" },
+                                             new SelectListItem { Value = "Bank", Text = "Bank" },
+                                             new SelectListItem { Value = "UPI", Text = "UPI" },
+                                             new SelectListItem { Value = "Cheque", Text = "Cheque" }
+                                        };
+                                    }
+                                    @Html.DropDownListFor(model => model.PaymentMode, new SelectList(TransactionTypeToList, "Value", "Text"), "--Select Payment Mode--", new { @class = "form-control", required = "required", id = "PaymentMode" })
+                                </div>
+                            </div>
+                            <div id="DebitFromField" class="form-group" style="display: none;">
+                                <label for="BankId" class="control-label">Debit From</label>
+                                <div class="col-md-10">
+                                    @{
+                                        var bankList = ViewBag.BankAccountList;
+                                    }
+                                    @Html.DropDownListFor(model => model.BankId, new SelectList(bankList, "Value", "Text"), "--Select Bank Account--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BankId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="BankNameField" class="form-group" style="display: none;">
+                                <label for="ReceiverBankName" class="control-label">Receiver's Bank Name</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ReceiverBankName, new { htmlAttributes = new { @class = "form-control", id = "ReceiverBankName" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="BankAccNumberField" class="form-group" style="display: none;">
+                                <label for="ReceiverBankAccountNumber" class="control-label">Receiver's Bank Account Number</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ReceiverBankAccountNumber, new { htmlAttributes = new { @class = "form-control", id = "ReceiverBankAccountNumber" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankAccountNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="BankAccHolderNameField" class="form-group" style="display: none;">
+                                <label for="ReceiverBankAccountHolderName" class="control-label">Receiver's Bank Account Holder Name</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ReceiverBankAccountHolderName, new { htmlAttributes = new { @class = "form-control", id = "ReceiverBankAccountHolderName" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankAccountHolderName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="BankAccIFSCCodeField" class="form-group" style="display: none;">
+                                <label for="ReceiverBankIFSCCode" class="control-label">Receiver's Bank IFSC Code</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ReceiverBankIFSCCode, new { htmlAttributes = new { @class = "form-control", id = "ReceiverBankIFSCCode" } })
+                                    @Html.ValidationMessageFor(model => model.ReceiverBankIFSCCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="TransactionIdField" class="form-group" style="display: none;">
+                                <label for="TransactionId" class="control-label" id="Tra_cheque">Transaction Id</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TransactionId, new { htmlAttributes = new { @class = "form-control", id = "TransactionId" } })
+                                    @Html.ValidationMessageFor(model => model.TransactionId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div id="ChequeDateField" class="form-group" style="display: none;">
+                                @Html.LabelFor(model => model.ChequeDate, htmlAttributes: new { @class = "control-label" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ChequeDate, new { htmlAttributes = new { @class = "form-control", id = "ChequeDate" } })
+                                    @Html.ValidationMessageFor(model => model.ChequeDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <button class="btn btn-outline-primary" id="PrevTo2" style="margin-right:30px; width:25%;">Previous</button>
+                                <button type="submit" class="btn btn-outline-success" id="SubmitForm" style="margin-right:30px; width:25%;" disabled>Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---  Here our payment Stepper view will be End -->
+            </div>
+        </div>
+
+        <!-- jQuery for validations -->
+        <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+        <script>
+            function validateAmount() {
+                let amountField = document.getElementById("Amount");
+                let amountValue = amountField.value;
+
+                // Remove any non-numeric characters
+                amountValue = amountValue.replace(/[^0-9.]/g, '');
+
+                // If you want to ensure only one decimal point is allowed
+                if ((amountValue.match(/\./g) || []).length > 1) {
+                    amountValue = amountValue.substring(0, amountValue.length - 1);
+                }
+
+                amountField.value = amountValue;
+            }
+
+            // Call validateAmount on input change
+            document.getElementById("Amount").addEventListener("input", validateAmount);
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#AmountPaidTo').change(function () {
+                    var selectedValue = $(this).val();
+                    if (selectedValue === "Vendor") {
+                        $('#VendorNameField').show();
+                        $('#StaffDropdownField').hide();
+                    } else if (selectedValue === "Staff") {
+                        $('#VendorNameField').hide();
+                        $('#StaffDropdownField').show();
+                    } else {
+                        $('#VendorNameField').hide();
+                        $('#StaffDropdownField').hide();
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#VoucherType').change(function () {
+                    var selectedText = $('#VoucherType option:selected').text(); // Get the selected text
+                    $('#Desc').val("Voucher Type: " + selectedText); // Set the selected text as the description
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#PaymentMode').change(function () {
+                    var selectedValue = $(this).val();
+                    if (selectedValue === "Bank") {
+                        $('#DebitFromField').show();
+                        $('#BankAccNumberField').show();
+                        $('#BankAccHolderNameField').show();
+                        $('#BankAccIFSCCodeField').show();
+                        $('#BankNameField').show();
+                        $('#AmountField').show();
+                        $('#DescriptionField').show();
+                        $('#TransactionIdField').show();
+                        $('#Tra_cheque').text('Transaction Id'); // Reset label to Transaction Id
+                        $('#ChequeDateField').hide();
+                    } else if (selectedValue === "UPI") {
+                        $('#TransactionIdField').show();
+                        $('#DebitFromField').hide();
+                        $('#BankAccNumberField').hide();
+                        $('#BankAccHolderNameField').hide();
+                        $('#BankAccIFSCCodeField').hide();
+                        $('#BankNameField').hide();
+                        $('#Tra_cheque').text('Transaction Id'); // Reset label to Transaction Id
+                        $('#ChequeDateField').hide();
+                    } else if (selectedValue === "Cheque") {
+                        $('#TransactionIdField').show();
+                        $('#ChequeDateField').show();
+                        $('#DebitFromField').show();
+                        $('#BankAccNumberField').hide();
+                        $('#BankAccHolderNameField').hide();
+                        $('#BankAccIFSCCodeField').hide();
+                        $('#BankNameField').hide();
+                        $('#Tra_cheque').text('Cheque Number'); // Change label to Cheque Number
+                    } else {
+                        $('#DebitFromField').hide();
+                        $('#BankAccNumberField').hide();
+                        $('#BankAccHolderNameField').hide();
+                        $('#BankAccIFSCCodeField').hide();
+                        $('#BankNameField').hide();
+                        $('#TransactionIdField').hide();
+                        $('#Tra_cheque').text('Transaction Id'); // Reset label to Transaction Id
+                        $('#ChequeDateField').hide();
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#AssignByStaffCode').change(function () {
+                    var assignByStaffCode = $(this).val();
+                    $.ajax({
+                        url: "/Bind/AssignTaskReportingStaffName",
+                        type: 'GET',
+                        data: { AssignByStaffCode: assignByStaffCode },
+                        success: function (data) {
+                            $('#AssignToStaffCode').empty(); // Clear existing options
+                            $.each(data, function (key, value) {
+                                $('#AssignToStaffCode').append($('<option>', {
+                                    value: value.Value,
+                                    text: value.Text
+                                }));
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                // Initializing Stepper
+                var stepper = new Stepper($('.bs-stepper')[0]);
+
+                // Validator functions
+                function validateStep1() {
+                    let voucherType = $('#VoucherType').val();
+                    let amount = $('#Amount').val();
+                    let desc = $('#Desc').val();
+                    let isAmountValid = /^[0-9]+(\.[0-9]{1,2})?$/.test(amount) && amount !== "0";
+                    let isDescValid = desc.length >= 10 && desc.length <= 200;
+
+                    let isValid = voucherType !== "" && isAmountValid && isDescValid;
+
+                    $('#NextTo2').prop('disabled', !isValid);
+                    return isValid;
+                }
+
+                function validateStep2() {
+                    let amountPaidTo = $('#AmountPaidTo').val();
+                    let vendorName = $('#VendorName').val();
+                    let staffName = $('#StaffName').val();
+                    let isVendorNameValid = vendorName.length >= 3 && /^[a-zA-Z\s]+$/.test(vendorName);
+                    let isStaffNameSelected = staffName !== "";
+
+                    let isValid = amountPaidTo !== "";
+
+                    if (amountPaidTo === "Vendor") {
+                        isValid = isValid && vendorName !== "" && isVendorNameValid;
+                    } else if (amountPaidTo === "Staff") {
+                        isValid = isValid && isStaffNameSelected;
+                    }
+
+                    $('#NextTo3').prop('disabled', !isValid);
+                    return isValid;
+                }
+
+                function validateStep3() {
+                    let paymentMode = $('#PaymentMode').val();
+                    let transactionId = $('#TransactionId').val();
+                    let bankAccountNumber = $('#ReceiverBankAccountNumber').val();
+                    let bankAccountHolderName = $('#ReceiverBankAccountHolderName').val();
+                    let bankIFSCCode = $('#ReceiverBankIFSCCode').val();
+                    let bankName = $('#ReceiverBankName').val();
+                    let chequeDate = $('#ChequeDate').val();
+
+                    let isValid = paymentMode !== "";
+
+                    if (paymentMode === "Bank") {
+                        let isBankAccountNumberValid = /^[0-9]{9,18}$/.test(bankAccountNumber);
+                        let isBankAccountHolderNameValid = /^[a-zA-Z\s]{3,100}$/.test(bankAccountHolderName);
+                        let isBankIFSCCodeValid = /^[A-Z]{4}0[A-Z0-9]{6}$/.test(bankIFSCCode);
+                        let isBankNameValid = /^[a-zA-Z\s]{3,100}$/.test(bankName);
+                        let isTransactionIdValid = transactionId !== "";
+
+                        isValid = isValid && isBankAccountNumberValid && isBankAccountHolderNameValid && isBankIFSCCodeValid && isBankNameValid && isTransactionIdValid;
+                    } else if (paymentMode === "UPI") {
+                        let isTransactionIdValid = /^[a-zA-Z0-9@@._]{5,100}$/.test(transactionId);
+                        isValid = isValid && isTransactionIdValid;
+                    } else if (paymentMode === "Cheque") {
+                        let chequeNumber = transactionId; // Assuming transactionId is used for cheque number
+                        let isChequeNumberValid = /^[0-9]{6}$/.test(chequeNumber);
+                        let chequeDateObj = new Date(chequeDate);
+                        let currentDate = new Date();
+                        let pastDate = new Date(currentDate);
+                        pastDate.setDate(pastDate.getDate() - 90);
+                        let isChequeDateValid = chequeDateObj >= pastDate && chequeDateObj <= currentDate;
+
+                        isValid = isValid && isChequeNumberValid && isChequeDateValid;
+                    }
+
+                    $('#SubmitForm').prop('disabled', !isValid);
+                    return isValid;
+                }
+
+                // Real-time validation for Step 1
+                $('#VoucherType, #Amount, #Desc').on('input change', function () {
+                    validateStep1();
+                });
+
+                // Real-time validation for Step 2
+                $('#AmountPaidTo, #VendorName, #StaffName').on('input change', function () {
+                    validateStep2();
+                });
+
+                // Real-time validation for Step 3
+                $('#PaymentMode, #ReceiverBankAccountNumber, #ReceiverBankAccountHolderName, #ReceiverBankIFSCCode, #ReceiverBankName, #TransactionId, #ChequeDate').on('input change', function () {
+                    validateStep3();
+                });
+
+                // Button clicks
+                $('#NextTo2').click(function () {
+                    if (validateStep1()) {
+                        stepper.next();
+                    }
+                });
+
+                $('#NextTo3').click(function () {
+                    if (validateStep2()) {
+                        stepper.next();
+                    }
+                });
+
+                $('#PrevTo1').click(function () {
+                    stepper.previous();
+                });
+
+                $('#PrevTo2').click(function () {
+                    stepper.previous();
+                });
+            });
+        </script>
+
+    </body>
+</html>
+}

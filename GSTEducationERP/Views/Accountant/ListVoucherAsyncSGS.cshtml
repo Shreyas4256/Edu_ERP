@@ -1,0 +1,201 @@
+﻿@model GSTEducationERPLibrary.Accountant.Accountant
+
+@{
+    ViewBag.Title = "ListVoucherAsyncSGS";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table id="example1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.VoucherCode)</th>
+            <th>@Html.DisplayNameFor(model => model.AmountReceiver)</th>
+            <th>@Html.DisplayNameFor(model => model.AmountReceiverType)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherType)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherDate)</th>
+            <th>@Html.DisplayNameFor(model => model.PaymentMode)</th>
+            <th>@Html.DisplayNameFor(model => model.Amount)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.lstVoucher)
+        {
+            <tr>
+                <td data-toggle="tooltip" title="@item.Description">
+                    @Html.DisplayFor(modelItem => item.VoucherCode)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.VendorName))
+                    {
+                        @Html.DisplayFor(modelItem => item.VendorName)
+                    } else if (!string.IsNullOrEmpty(item.AmountPaidTo))
+                    {
+                        @Html.DisplayFor(modelItem => item.AmountPaidTo)
+                    } else
+                    {
+                        @Html.DisplayFor(modelItem => item.AmountReceiver)
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.VendorName))
+                    {
+                        @Html.Raw("Vendor")
+                    } else if (!string.IsNullOrEmpty(item.AmountPaidTo))
+                    {
+                        @Html.Raw("Staff")
+                    } else
+                    {
+                        @Html.DisplayFor(modelItem => item.AmountReceiverType)
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.VoucherType)</td>
+                <td>@Html.DisplayFor(modelItem => item.VoucherDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentMode)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                <td>
+                    <a href="#" class="icon" data-id="@item.VoucherCode" data-url="@Url.Action("DetailsVoucherSGS", "Accountant", new { id = item.VoucherCode })"
+                       data-toggle="modal" data-target="#voucherModal" title="View">
+                        <video width="25" height="25" playsinline loop>
+                            <source src="~/Content/Admin/icon/view.mp4" type="video/mp4">
+                        </video>
+                    </a>
+                    <span class="delete-button video-link" onclick="showDeleteConfirmation('@item.VoucherCode')" title="Cancel">
+                        <video width="25" height="25" playsinline loop>
+                            <source src="~/Content/Admin/icon/Delete%202.mp4" type="video/mp4" />
+                        </video>
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Voucher Details Modal -->
+<div class="modal fade" id="voucherModal" tabindex="-1" role="dialog" aria-labelledby="voucherModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="voucherModalLabel">Voucher Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Voucher details will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Voucher Modal -->
+<div class="modal fade" id="EditTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #33CCCC;">Edit Voucher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Edit form will be loaded here -->
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="~/Content/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Content/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/Content/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="~/Content/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/Content/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/Content/plugins/jszip/jszip.min.js"></script>
+<script src="~/Content/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="~/Content/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="~/Content/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="~/Content/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="~/Content/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example1').DataTable();
+
+        $('#example1').on('click', '.icon', function () {
+            var voucherCode = $(this).data('id');
+            var url = $(this).data('url');
+            var targetModal = $(this).data('target');
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    $(targetModal + ' .modal-body').html(data);
+                    $(targetModal).modal('show');
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+
+    function showDeleteConfirmation(voucherCode) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to delete this voucher.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteVoucher(voucherCode);
+            }
+        });
+    }
+
+    function deleteVoucher(voucherCode) {
+        $.ajax({
+            url: '@Url.Action("DeleteVoucher", "Accountant")',
+            type: 'POST',
+            data: { voucherId: voucherCode },
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Voucher deleted successfully!',
+                        icon: 'success'
+                    }).then(() => {
+                        window.location.href = '@Url.Action("ListAllVouchersAsyncSGS", "Accountant")';
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Failed to delete voucher. Error: ' + response.error,
+                        icon: 'error'
+                    });
+                }
+            },
+            error: function () {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An error occurred while processing your request.',
+                    icon: 'error'
+                });
+            }
+        });
+    }
+</script>

@@ -1,0 +1,258 @@
+﻿@model GSTEducationERPLibrary.Accountant.Accountant
+@using System.Globalization
+
+@{
+    ViewBag.Title = "AccountantDashboardAsyncSGS";
+    Layout = "~/Views/Shared/_LayoutERP.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/adminlte.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.css" rel="stylesheet" />
+    <style>
+        /* Existing styles */
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .text-success {
+            color: green;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        .small-box {
+            position: relative;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .small-box h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-width {
+            width: 100%;
+        }
+
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .custom-col {
+            flex: 1 0 50%;
+            max-width: 50%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .date-range-filter {
+            margin-top: 20px;
+        }
+
+        .top-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .top-summary .input-group {
+            flex: 1;
+        }
+
+        .cash-in-hand, .bank-balance {
+            margin-top: 20px;
+        }
+
+        .cash-in-hand .form-group, .bank-balance .form-group {
+            margin-bottom: 10px;
+        }
+
+        .cash-in-hand .form-control, .bank-balance .form-control {
+            width: 100%;
+        }
+
+        .cash-in-hand .small-box, .bank-balance .small-box {
+            width: 100%;
+        }
+
+        @@media (max-width: 768px) {
+            .custom-col {
+                flex: 1 0 100%;
+                max-width: 100%;
+            }
+
+            .top-summary {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-summary .input-group {
+                margin-top: 10px;
+            }
+        }
+    </style>
+}
+
+<div class="container-fluid top-padding">
+    <h2>Dashboard</h2>
+
+    <div class="row date-range-filter">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="top-summary">
+                        <div class="input-group">
+                            <button type="button" class="btn btn-default" id="daterange-btn">
+                                <i class="far fa-calendar-alt"></i> Date range
+                                <i class="fas fa-caret-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="custom-row">
+                        <div class="custom-col">
+                            <div class="small-box bg-success card-width">
+                                <div class="inner">
+                                    <h3>@Model.TotalIncome.ToString("C", new CultureInfo("hi-IN"))</h3>
+                                    <p>Total Income</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-money-bill-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-col">
+                            <div class="small-box bg-danger card-width">
+                                <div class="inner">
+                                    <h3>@Model.TotalExpenses.ToString("C", new CultureInfo("hi-IN"))</h3>
+                                    <p>Total Expenses</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="custom-row">
+                <div class="custom-col">
+                    <div class="card cash-in-hand">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="cashDateFilter">Select Date:</label>
+                                <input type="text" id="cashDateFilter" class="form-control" placeholder="Select date" />
+                            </div>
+                            <div class="small-box bg-warning card-width">
+                                <div class="inner">
+                                    <h3>@Model.CashInHand.ToString("C", new CultureInfo("hi-IN"))</h3>
+                                    <p>Cash On Hand</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-col">
+                    <div class="card bank-balance">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bankDropdown">Select Bank:</label>
+                                <select id="bankDropdown" class="form-control">
+                                    <option value="Bank1">Bank 1</option>
+                                    <option value="Bank2">Bank 2</option>
+                                    <option value="Bank3">Bank 3</option>
+                                    <!-- Add more banks here -->
+                                </select>
+                            </div>
+                            <div class="small-box bg-gradient-info card-width">
+                                <div class="inner">
+                                    <h3>@Model.BankBalance.ToString("C", new CultureInfo("hi-IN"))</h3>
+                                    <p>Current Bank Balance</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte/dist/js/adminlte.min.js"></script>
+
+    <script>
+        $(function () {
+            // Initialize Date Range Picker
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function (start, end) {
+                    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+            );
+
+            // Cash Date Filter
+            $('#cashDateFilter').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true
+            });
+
+            // Bank Dropdown Change Event
+            $('#bankDropdown').change(function () {
+                var selectedBank = $(this).val();
+                // Fetch and update bank balance based on selected bank
+                // This should be done via AJAX or by refreshing the view with the selected bank's data
+            });
+        });
+    </script>
+}
